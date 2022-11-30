@@ -18,4 +18,9 @@ range(1, 26).forEach(i => {
    if (!fs.existsSync(inputFilePath)) {
       fs.copyFileSync('./input-template.txt', inputFilePath);
    }
+
+   const testFilePath = `${folderPath}/solution.test.js`;
+   if (!fs.existsSync(testFilePath)) {
+      fs.copyFileSync('./test-template.js', testFilePath);
+   }
 });
