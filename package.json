@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "test": "node testRunner.js",
+    "solution": "node --max-old-space-size=32000 solutionRunner.js",
+    "lint": "eslint ./**/*.js",
+    "lint-fix": "eslint ./**/*.js --fix",
+    "scaffold": "node scaffold.js"
+  },
+  "dependencies": {
+    
+  },
+  "eslintConfig": {
+    "extends": ["techsmith/es6"],
+    "rules": {
+      "no-console": "off",
+      "no-magic-numbers": "off"
+    },
+    "env": {
+      "node": true,
+      "jest": true
+    }
+  },
+  "devDependencies": {
+    "eslint-config-techsmith": "^3.1.0"
+  }
+}
