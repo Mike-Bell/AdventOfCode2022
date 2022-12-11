@@ -13,17 +13,19 @@ if (day.length === 1) {
    day = `0${day}`;
 }
 
-console.time('solution');
+console.time('full run');
 
 const input = fs.readFileSync(`./${day}/input.txt`, 'utf8');
 const solutionRunner = require(`./${day}/solution.js`);
 
 const run = part => {
+   console.time(`solution ${part}`);
    let parsedInput = input;
    if (solutionRunner.parseInput) {
       parsedInput = solutionRunner.parseInput(input);
    }
    console.log(solutionRunner[`runPart${part}`](parsedInput));
+   console.timeEnd(`solution ${part}`);
 };
 
 if (args.length === 1) {
@@ -38,4 +40,4 @@ if (args.length === 1) {
    run(oneOrTwo);
 }
 
-console.timeEnd('solution');
+console.timeEnd('full run');
