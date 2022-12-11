@@ -15,22 +15,27 @@ if (day.length === 1) {
 
 console.time('solution');
 
-let input = fs.readFileSync(`./${day}/input.txt`, 'utf8');
+const input = fs.readFileSync(`./${day}/input.txt`, 'utf8');
 const solutionRunner = require(`./${day}/solution.js`);
-if (solutionRunner.parseInput) {
-   input = solutionRunner.parseInput(input);
-}
+
+const run = part => {
+   let parsedInput = input;
+   if (solutionRunner.parseInput) {
+      parsedInput = solutionRunner.parseInput(input);
+   }
+   console.log(solutionRunner[`runPart${part}`](parsedInput));
+};
 
 if (args.length === 1) {
-   console.log(solutionRunner.runPart1(input));
-   console.log(solutionRunner.runPart2(input));
+   run('1');
+   run('2');
 } else {
    const oneOrTwo = args[1];
    if (oneOrTwo !== '1' && oneOrTwo !== '2' && !isForce) {
       console.log('Number after dash must be 1 or 2. Make next arg `force` to override this.');
       process.exit();
    }
-   console.log(solutionRunner[`runPart${oneOrTwo}`](input));
+   run(oneOrTwo);
 }
 
 console.timeEnd('solution');
